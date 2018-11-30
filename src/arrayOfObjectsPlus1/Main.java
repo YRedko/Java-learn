@@ -7,6 +7,8 @@ public class Main {
         Object third = new Object();
         MyCoolList arr = new MyCoolList();
         arr.value = new Object[]{first, second};
+        MyCoolList arr2 = new MyCoolList();
+        arr2.value = new Object[]{first, second, third};
         arr.arrayTravers(arr.value);
         arr.add(arr.value, third);
         System.out.println("---");
