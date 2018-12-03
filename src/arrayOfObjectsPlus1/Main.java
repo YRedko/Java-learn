@@ -5,6 +5,7 @@ public class Main {
         Object first = new Object();
         Object second = new Object();
         Object third = new Object();
+        System.out.println("Third: "+third);
         MyCoolList arr = new MyCoolList();
         arr.value = new Object[]{first, second};
         MyCoolList arr2 = new MyCoolList();
@@ -14,5 +15,4 @@ public class Main {
         System.out.println("---");
         arr.arrayTravers(arr.value);
     }
-
 }
