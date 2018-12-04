@@ -11,7 +11,7 @@ public class Main {
         MyCoolList arr2 = new MyCoolList();
         arr2.value = new Object[]{first, second, third};
         arr.arrayTravers(arr.value);
-        arr.add(arr.value, third);
+        arr.add(third);
         System.out.println("---");
         arr.arrayTravers(arr.value);
     }

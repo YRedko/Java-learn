@@ -1,5 +1,5 @@
 package arrayOfObjectsPlus1;
 
-public interface Iterable {
-    void arrayTravers(Object[] value);
+public interface Iterable<T> {
+    void arrayTravers(T[] value);
 }
