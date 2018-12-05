@@ -11,17 +11,13 @@ public class MyCoolList<T> implements Iterable<T> {
         }
     }
     public void add(T last) {
-        this.value = Arrays.copyOf(this.value, value.length+1);
-        this.value[value.length-1] = last;
-        /*
-        T[] newArr = new T[this.value.length+1];
+        //this.value = Arrays.copyOf(this.value, value.length+1);
+        //this.value[value.length-1] = last;
+
+        T[] newArr = (T[]) (new Object[this.value.length+1]);
         newArr = Arrays.copyOf(this.value, this.value.length+1);
         newArr[this.value.length] = last;
-        this.value = newArr;//this.value
-        */
-        /*for(int i  =0; i < objects.length; i++){
-            System.out.println(objects[i]);
-        }*/
+        this.value = newArr;
     }
 }
 
