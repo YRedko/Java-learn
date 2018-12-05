@@ -5,8 +5,8 @@ import java.util.function.Consumer;
 public class Main {
 
     public static void main(String[] args) {
-        /*Tree tree = new Tree();
-        tree.root = new Node();
+        Tree tree = new Tree(new Node(14,new Node<>(5,null,null),new Node<>(10,null,null)));
+        /*tree.root = new Node();
         tree.root.num = 14;
         tree.root.left = new Node();
         tree.root.right = new Node();
@@ -22,6 +22,6 @@ public class Main {
                 System.out.println("Info: "+o);
             }
         };
-        //tree.traverse(consumer);
+        tree.traverse(consumer);
     }
 }
