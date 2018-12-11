@@ -36,7 +36,7 @@ public class Main {
         block1.show(blockOfNumbers);
         block1.delNum(blockOfNumbers, blackList);
         System.out.println("-----");
-        block1.show(blockOfNumbers);
+        block2.show(blockOfNumbers);
     }
 
 }

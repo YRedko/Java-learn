@@ -25,7 +25,9 @@ public class BlockOfNumbers {
         Iterator<BlockOfNumbers> iteratorBlock = blockOfNumbers.iterator();
         while(iteratorBlack.hasNext()){
             while(iteratorBlock.hasNext()){
-                if(iteratorBlack.next() >= startingNumber && iteratorBlack.next() <= endingNumber){
+                Integer value = iteratorBlack.next();
+                System.out.println("Black: "+value);
+                if(value >= startingNumber && value <= endingNumber){
                     iteratorBlock.remove();
                 }
             }
@@ -35,6 +37,7 @@ public class BlockOfNumbers {
             for(BlockOfNumbers j: blockOfNumbers){
                 if(i >= j.startingNumber && i <= j.endingNumber){
                     blockOfNumbers.remove(j);
+                    //break;
                 }
             }
         }*/
