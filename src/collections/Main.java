@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Subscriber subscriber1 = new Subscriber(21);
+        /*Subscriber subscriber1 = new Subscriber(21);
         Subscriber subscriber2 = new Subscriber(10);
         Subscriber subscriber3 = new Subscriber(10);
         Subscriber subscriber4 = new Subscriber(24);
@@ -16,12 +16,27 @@ public class Main {
 
         Set<Subscriber> set2 = new HashSet<>();
         set2.add(subscriber3);
-        set2.add(subscriber4);
+        set2.add(subscriber4);*/
 
 //        subscriber1.union(set1, set2);
 //        subscriber1.intersection(set1, set2);
 //        subscriber1.difference(set1,set2);
 //        subscriber1.symmetricDifference(set1, set2);
+
+
+        List<BlockOfNumbers> blockOfNumbers = new ArrayList<>();
+        BlockOfNumbers block1 = new BlockOfNumbers(10, 20);
+        BlockOfNumbers block2 = new BlockOfNumbers(25, 30);
+        blockOfNumbers.add(block1);
+        blockOfNumbers.add(block2);
+
+        List<Integer> blackList = new ArrayList<>();
+        blackList.add(10);
+
+        block1.show(blockOfNumbers);
+        block1.delNum(blockOfNumbers, blackList);
+        System.out.println("-----");
+        block1.show(blockOfNumbers);
     }
 
 }
