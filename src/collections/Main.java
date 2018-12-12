@@ -23,8 +23,9 @@ public class Main {
 //        subscriber1.difference(set1,set2);
 //        subscriber1.symmetricDifference(set1, set2);
 
+//////////////////////////////////////////////////////////////////
 
-        List<BlockOfNumbers> blockOfNumbers = new ArrayList<>();
+        /*List<BlockOfNumbers> blockOfNumbers = new ArrayList<>();
         BlockOfNumbers block1 = new BlockOfNumbers(10, 20);
         BlockOfNumbers block2 = new BlockOfNumbers(25, 30);
         blockOfNumbers.add(block1);
@@ -36,7 +37,24 @@ public class Main {
         block1.show(blockOfNumbers);
         block1.delNum(blockOfNumbers, blackList);
         System.out.println("-----");
-        block2.show(blockOfNumbers);
+        block2.show(blockOfNumbers);*/
+
+//////////////////////////////////////////////////////////////////
+
+        User mainUser = new User("Main");
+        User usersFriend = new User("Friend");
+        User friendsFriend = new User("Friend of friend");
+
+        Set<User> userSet = new HashSet<>();
+        mainUser.Friends = userSet;
+        userSet.add(usersFriend);
+
+        Set<User> friendSet = new HashSet<>();
+        usersFriend.Friends = friendSet;
+        friendSet.add(friendsFriend);
+
+        mainUser.showFriendsOfFriends();
+
     }
 
 }
