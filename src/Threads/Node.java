@@ -9,6 +9,7 @@ public class Node<T> {
     Node left;
     Node right;
     AtomicBoolean used;
+    String label;
 
     Node(T num, Node left, Node right, AtomicBoolean used){
         this.num = num;
