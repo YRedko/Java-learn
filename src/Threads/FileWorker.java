@@ -19,7 +19,7 @@ public class FileWorker implements Runnable{
         }
     }
 
-    public void  writeToFile(String fileName, String text){
+    public static void  writeToFile(String fileName, String text){
         File file =new File(fileName);
         try {
             //проверяем, что если файл не существует то создаем его
@@ -43,45 +43,47 @@ public class FileWorker implements Runnable{
         }
     }
 
-//    public static String read(String fileName) throws FileNotFoundException {
-//        //Этот спец. объект для построения строки
-//        StringBuilder sb = new StringBuilder();
-//
-//        exists(fileName);
-//
-//        try {
-//            //Объект для чтения файла в буфер
-//            BufferedReader in = new BufferedReader(new FileReader( file.getAbsoluteFile()));
-//            try {
-//                //В цикле построчно считываем файл
-//                String s;
-//                while ((s = in.readLine()) != null) {
-//                    sb.append(s);
-//                    sb.append("\n");
-//                }
-//            } finally {
-//                //Также не забываем закрыть файл
-//                in.close();
-//            }
-//        } catch(IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        //Возвращаем полученный текст с файла
-//        return sb.toString();
-//    }
-//
-//    public static void update(String nameFile, String newText) throws FileNotFoundException {
-//        exists(fileName);
-//        StringBuilder sb = new StringBuilder();
-//        String oldFile = read(nameFile);
-//        sb.append(oldFile);
-//        sb.append(newText);
-//        writeToFile(fileName, sb.toString());
-//    }
+    public static String read(String fileName) throws FileNotFoundException {
+        //Этот спец. объект для построения строки
+        StringBuilder sb = new StringBuilder();
+
+        File file =new File(fileName);
+
+        exists(fileName);
+
+        try {
+            //Объект для чтения файла в буфер
+            BufferedReader in = new BufferedReader(new FileReader( file.getAbsoluteFile()));
+            try {
+                //В цикле построчно считываем файл
+                String s;
+                while ((s = in.readLine()) != null) {
+                    sb.append(s);
+                    sb.append("\n");
+                }
+            } finally {
+                //Также не забываем закрыть файл
+                in.close();
+            }
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //Возвращаем полученный текст с файла
+        return sb.toString();
+    }
+
+    public static void update(String nameFile, String newText) throws FileNotFoundException {
+        exists(fileName);
+        StringBuilder sb = new StringBuilder();
+        String oldFile = read(nameFile);
+        sb.append(oldFile);
+        sb.append(newText+"----------"+"\n");
+        writeToFile(nameFile, sb.toString());
+    }
 
     public void recursionBinaryTree(Node node, StringBuilder sb){
-        System.out.println(node.label);
+        System.out.print(node.label);
         sb.append(node.label);
 
         if (node.left!=null) {
@@ -99,14 +101,22 @@ public class FileWorker implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName());
-        StringBuilder sb = new StringBuilder();
-        recursionBinaryTree(root, sb);
-        writeToFile(fileName, sb.toString());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        int count = 0;
+        //writeToFile(fileName, sb.toString());
+        while(count<10){
+            StringBuilder sb = new StringBuilder();
+            System.out.println(Thread.currentThread().getName()+";   count: "+count);
+            recursionBinaryTree(root, sb);
+            try {
+                update(fileName,sb.toString());
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            count++;
         }
+
     }
 }
