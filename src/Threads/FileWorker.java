@@ -83,7 +83,7 @@ public class FileWorker implements Runnable{
         writeToFile(nameFile, sb.toString());
     }
 
-    public void recursionBinaryTree(Node node, StringBuilder sb){
+/*    public void recursionBinaryTree(Node node, StringBuilder sb){
         System.out.print(node.label);
         sb.append(node.label);
 
@@ -94,6 +94,17 @@ public class FileWorker implements Runnable{
             recursionBinaryTree(node.right, sb);
         }
 
+    }*/
+    public void recursionBinaryTree(Node node, StringBuilder sb){
+        System.out.println();
+        sb.append(node.label2);
+
+        if (node.left!=null) {
+            recursionBinaryTree(node.left, sb);
+        }
+        if (node.right!=null) {
+            recursionBinaryTree(node.right, sb);
+        }
     }
 
     @Override
@@ -107,6 +118,8 @@ public class FileWorker implements Runnable{
             recursionBinaryTree(tree.root, sb);
             try {
                 update(fileName,sb.toString());
+                System.out.println("--------"+sb.toString());
+
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -114,6 +127,7 @@ public class FileWorker implements Runnable{
                 e.printStackTrace();
             }
             sb.delete(0,sb.length());
+
         }
 
         System.out.println();
