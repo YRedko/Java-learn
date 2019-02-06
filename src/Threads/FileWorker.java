@@ -5,11 +5,12 @@ import java.io.*;
 public class FileWorker implements Runnable{
 
     static String fileName;
-    Node root;
+    Tree tree;
+    static volatile int counter;
 
-    FileWorker(String fileName, Node root){
+    FileWorker(String fileName, Tree tree){
         this.fileName = fileName;
-        this.root = root;
+        this.tree = tree;
     }
 
     private static void exists(String fileName) throws FileNotFoundException {
@@ -87,13 +88,9 @@ public class FileWorker implements Runnable{
         sb.append(node.label);
 
         if (node.left!=null) {
-//            writeToFile(fileName, node.label);
             recursionBinaryTree(node.left, sb);
         }
         if (node.right!=null) {
-            //writeToFile(fileName, node.label);
-//            System.out.println("right: "+node.label);
-//            sb.append(node.label);
             recursionBinaryTree(node.right, sb);
         }
 
@@ -101,12 +98,13 @@ public class FileWorker implements Runnable{
 
     @Override
     public void run() {
-        int count = 0;
         //writeToFile(fileName, sb.toString());
-        while(count<10){
-            StringBuilder sb = new StringBuilder();
-            System.out.println(Thread.currentThread().getName()+";   count: "+count);
-            recursionBinaryTree(root, sb);
+
+        StringBuilder sb = new StringBuilder();
+
+        while(counter < 3){
+            System.out.println(counter);
+            recursionBinaryTree(tree.root, sb);
             try {
                 update(fileName,sb.toString());
                 Thread.sleep(1000);
@@ -115,8 +113,15 @@ public class FileWorker implements Runnable{
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            count++;
+            sb.delete(0,sb.length());
         }
 
+        System.out.println();
+        try {
+            recursionBinaryTree(tree.root, sb);
+            update(fileName,sb.toString());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

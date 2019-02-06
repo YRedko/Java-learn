@@ -1,8 +1,6 @@
 package Threads;
 
-import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
 
 public class Main {
 
@@ -10,14 +8,9 @@ public class Main {
 
         Tree tree = new Tree(new Node(1.0 ,new Node<>(2.0,null,null, new AtomicBoolean()),new Node<>(2.1 ,null,null, new AtomicBoolean()), new AtomicBoolean()));
 
-        StringBuilder builder = new StringBuilder();
-        Threads threads = new Threads(tree.root);
+        Threads threads = new Threads(tree);
 
-//        FileWorker fileWorker = new FileWorker();
-//        Runnable runnable = () -> {
-//
-//        };
-        FileWorker fileWorker = new FileWorker("fileLog", tree.root);
+        FileWorker fileWorker = new FileWorker("fileLog", tree);
 
         Thread thread1 = new Thread(threads);
         Thread thread2 = new Thread(threads);
@@ -31,13 +24,5 @@ public class Main {
         thread4.start();
         threadFile.start();
 
-//        Consumer consumer = new Consumer() {
-//            @Override
-//            public void accept(Object o) {
-//                System.out.println("Info: "+o);
-//            }
-//        };
-
-//        tree.traverse(consumer);
     }
 }

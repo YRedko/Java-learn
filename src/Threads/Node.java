@@ -16,6 +16,7 @@ public class Node<T> {
         this.left = left;
         this.right = right;
         this.used = used;
+        this.label = "node "+num.toString()+"\n";
     }
 
     public void recursionBinatyTree(Consumer consumer){
