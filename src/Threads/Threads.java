@@ -23,18 +23,16 @@ public class Threads implements Runnable {
                     //StringBuilder logStringBuilder = new StringBuilder();
                     Random rnd = new Random(System.currentTimeMillis());
 
-//                    node.label = "node "+node.num.toString()+" in process by "+Thread.currentThread().getName()+"\n";
+                    node.label = "node "+node.num.toString()+" in process by "+Thread.currentThread().getName()+"\n";
 //                    System.out.println("LabelBefore: "+node.label);
-                    node.label2 = (Thread.currentThread().getName()+" start process node "+node.num+"\n");
-//                    node.label2 = "node "+node.num.toString()+" start process node "+Thread.currentThread().getName()+"\n";
+                    tree.logString.append(Thread.currentThread().getName()+" start process node "+node.num+"\n");
 //                    System.out.println(Thread.currentThread().getName()+" start process node "+node.num);
 
                     try {
                         Thread.sleep(rnd.nextInt(5001));
-                        node.label2 = (Thread.currentThread().getName()+" finish process node "+node.num+"\n");
-//                        node.label2 = "node "+node.num.toString()+" finish process node "+Thread.currentThread().getName()+"\n";
+                        tree.logString.append(Thread.currentThread().getName()+" finish process node "+node.num+"\n");
 //                        System.out.println("   "+Thread.currentThread().getName()+" finish process node "+node.num);
-//                        node.label = "node "+node.num.toString()+" processed"+"\n";
+                        node.label = "node "+node.num.toString()+" processed"+"\n";
                         counter++;
 //                        System.out.println("LabelAfter: "+node.label);
                     } catch (InterruptedException e) {
